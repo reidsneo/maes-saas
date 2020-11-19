@@ -8,12 +8,13 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
-      - image: circleci/mysql:5.7-ram
+      - image: circleci/mysql:8.0.20-ram
+        command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
-          - MYSQL_ROOT_PASSWORD=toor          
+          - MYSQL_ROOT_PASSWORD='toor'          
           - MYSQL_USER=forge
           - MYSQL_DATABASE=forge
-          - MYSQL_ALLOW_EMPTY_PASSWORD = true
+          - MYSQL_PASSWORD='forge'
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -58,18 +59,18 @@ jobs:
             
       # prepare the database
       - run: mysqladmin create laravel --host="127.0.0.1" --user="root" --password="toor"
-      - run: php artisan migrate --env=local --force
+      - run: php artisan migrate --env=local --database=mysql --force
 
       # run tests with phpunit or codecept
-      - run: ./vendor/bin/phpunit
-      #- run: ./vendor/bin/codecept build
-      #- run: ./vendor/bin/codecept run
+      #- run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/codecept build
+      - run: ./vendor/bin/codecept run
 
 deploy:
     branches:
       only:
         - main
-    working_directory: ~/repo
+    working_directory: ~/laravel
     steps:
       - checkout
       - run:
