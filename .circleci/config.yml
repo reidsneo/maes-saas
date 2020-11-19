@@ -74,6 +74,8 @@ jobs:
       
       
   deploy:
+    machine:
+      enabled: true
     branches:
       only:
         - main
