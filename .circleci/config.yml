@@ -13,7 +13,7 @@ jobs:
           - MYSQL_ROOT_PASSWORD=toor          
           - MYSQL_USER=forge
           - MYSQL_PASSWORD=
-          - MYSQL_DATABASE=laravel
+          - MYSQL_DATABASE=forge
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -57,7 +57,7 @@ jobs:
             - node_modules
             
       # prepare the database
-      #- run: mysqladmin create laravel --host="127.0.0.1" --user="root" --password="toor"
+      - run: mysqladmin create laravel --host="127.0.0.1" --user="root" --password="toor"
       - run: php artisan migrate --env=testing --force
 
       # run tests with phpunit or codecept
