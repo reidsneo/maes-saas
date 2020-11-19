@@ -65,8 +65,6 @@ jobs:
       - run: touch storage/testing.sqlite
       - run: php artisan config:clear
       - run: mysqladmin create laravel --host="127.0.0.1" --user="root" --password=""
-      - run: echo "GRANT ALL PRIVILEGES ON *.* TO 'forge'@'127.0.0.1' WITH GRANT OPTION" | mysql -u root
-      - run: echo "FLUSH PRIVILEGES" | mysql -u root
       - run: php artisan migrate --env=local --database=mysql --force
 
       # run tests with phpunit or codecept
