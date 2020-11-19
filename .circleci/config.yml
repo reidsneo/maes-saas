@@ -57,7 +57,7 @@ jobs:
             - node_modules
             
       # prepare the database
-      - run: mysqladmin create laravel --host="127.0.0.1" --user="root" --password="toor"
+      #- run: mysqladmin create laravel --host="127.0.0.1" --user="root" --password="toor"
       - run: php artisan migrate --env=testing --force
 
       # run tests with phpunit or codecept
