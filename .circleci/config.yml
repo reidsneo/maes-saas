@@ -10,7 +10,10 @@ jobs:
       - image: circleci/php:7.3-node-browsers
       - image: circleci/mysql:5.7-ram
         environment:
-          - MYSQL_ROOT_PASSWORD=toor
+          - MYSQL_ROOT_PASSWORD=toor          
+          - MYSQL_USER=forge
+          - MYSQL_PASSWORD=
+          - MYSQL_DATABASE=laravel
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
