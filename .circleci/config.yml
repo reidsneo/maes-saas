@@ -96,13 +96,13 @@ jobs:
           command: scp laravel $SSH_USERNAME@$SSH_HOST:/var/www/html/
           
   workflows:
-   version: 2
-   build-and-deploy:
-     jobs:
-       - build
-       - deploy:
-           requires:
-             - build # only deploy once build job has completed
-           filters:
-             branches:
-               only: main # only deploy on the master branch
+  version: 2
+  build-and-deploy:
+      jobs:
+        - build
+        - deploy:
+            requires:
+              - build
+            filters:
+              branches:
+                only: main
