@@ -50,9 +50,9 @@ jobs:
     working_directory: ~/laravel
     steps:
     - checkout
-    - run:
-        name: run deployment script
-        command: ./bin/deployment-script.sh
+   # - run:
+   #     name: run deployment script
+   #     command: ./bin/deployment-script.sh
     - add_ssh_keys:
         fingerprints:
         - c2:f2:cc:a6:0d:5e:03:8a:81:3f:0c:44:36:cd:82:bf
